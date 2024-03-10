@@ -1,0 +1,36 @@
+{%extends "base.html"%}
+{%block title%}{{pet.name}}{%endblock%}
+
+{%block content%}
+<div class="container" style="width:25rem;">
+    <div class="card" style="width:25rem;">
+        <img src="{{pet.photo_url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{pet.name}}</h5>
+            {%if pet.notes%}
+            <p class="card-text">{{pet.notes}}</p>
+            {%endif%}
+
+        </div>
+        <ul class="list-group list-group-flush">
+            {%if pet.age%}
+            <li class="list-group-item">{{pet.age}} year(s) old</li>
+            {%endif%}
+            <li class="list-group-item">{{pet.species|capitalize}}</li>
+        </ul>
+        <div class="card-body">
+            <form method="POST">
+                {{form.hidden_tag()}}
+                {{form.photo_url.label(class_="input-group")}}
+                {{form.photo_url(class_="input-group")}}
+                {{form.notes.label(class_="input-group")}}
+                {{form.notes(class_="input-group")}}
+                {{form.available.label(class_="input-group")}}
+                {{form.available(class_="input-group", style="margin-left:-175px")}}
+                <button style="margin-top:50px" class="btn btn-success btn-lg">Save</button>
+                <a href="/" style="margin-top:50px" class="btn btn-danger btn-lg">Go Back</a>
+            </form>
+        </div>
+    </div>
+</div>
+{%endblock%}

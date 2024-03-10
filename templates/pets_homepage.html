@@ -1,0 +1,26 @@
+{%extends "base.html"%}
+
+{%block title%}Pets{%endblock%}
+
+{%block content%}
+{%if pets%}
+{%for pet in pets%}
+
+<div class="card" style="width: 18rem;display:inline-block">
+    {%if pet.photo_url%}
+    <img src="{{pet.photo_url}}" class="card-img-top" alt="...">
+    {%endif%}
+    <div class="card-body">
+        <h5 class="card-title">{{pet.name}} {%if pet.available%}<span class="badge text-bg-success"
+                style="font-size:10px;">Available</span>{%else%}<span class="badge text-bg-danger"
+                style="font-size:10px;">Unavailable</span>{%endif%}</h5>
+        {%if pet.notes%}<p class="card-text">{{pet.notes}}</p>{%endif%}
+        <a href="/{{pet.id}}" class="btn btn-primary">View</a>
+    </div>
+</div>
+
+{%endfor%}
+{%else%}
+<h1>No Pets at the moment.</h1>
+{%endif%}
+{%endblock%}
